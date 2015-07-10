@@ -1,4 +1,4 @@
 #!/bin/sh
 cd /sabnzbd
 git pull
-./SABnzbd.py -f /sabnzbd/config.ini
+./SABnzbd.py -b 0 -f /datadir/config.ini
