@@ -21,7 +21,7 @@ RUN chown sabnzbd: /start.sh \
 
 VOLUME ['/datadir', '/media']
 
-EXPOSE 443
+EXPOSE 8080
 
 USER sabnzbd
 
