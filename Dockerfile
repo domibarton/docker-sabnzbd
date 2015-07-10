@@ -3,7 +3,7 @@ MAINTAINER confirm IT solutions, dbarton
 
 RUN sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
     && apt-get -q update \
-    && apt-get install -qy python-cheetah python-openssl unzip unrar par2 \
+    && apt-get install -qy git python-cheetah python-openssl unzip unrar par2 \
     && apt-get -y autoremove \
     && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/* \
