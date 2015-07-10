@@ -5,7 +5,7 @@ RUN sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
     && apt-get -q update \
     && apt-get install -qy python-cheetah python-openssl unzip unrar par2 \
     && apt-get -y autoremove \
-    && apt-get -y clean \ 
+    && apt-get -y clean \
     && rm -rf /var/lib/apt/lists/* \
     && rm -rf /tmp/*
 
@@ -25,4 +25,5 @@ EXPOSE 443
 
 USER sabnzbd
 
+WORKDIR /sabnzbd
 CMD /start.sh
