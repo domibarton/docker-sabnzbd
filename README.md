@@ -9,5 +9,5 @@ docker build -t <tag> .
 ## Run
 
 ```bash
-docker run --name sabnzbd -v <datadir path>:/datadir -v <media path>:/media
+docker run --name sabnzbd -v <datadir path>:/datadir -v <media path>:/media confirm/sabnzbd
 ```
