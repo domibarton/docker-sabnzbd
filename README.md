@@ -1,7 +1,7 @@
 ## Build
 
 ```bash
-git clone https://github.com/confirm-it-solutions/docker-sabnzbd.git
+git clone https://github.com/dbarton/docker-sabnzbd.git
 cd docker-sabnzbd
 docker build -t <tag> .
 ```
@@ -9,5 +9,5 @@ docker build -t <tag> .
 ## Run
 
 ```bash
-docker run --name sabnzbd -v <datadir path>:/datadir -v <media path>:/media confirm/sabnzbd
+docker run --name sabnzbd -v <datadir path>:/datadir -v <media path>:/media dbarton/sabnzbd
 ```
