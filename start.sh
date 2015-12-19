@@ -1,4 +1,7 @@
 #!/bin/sh
-cd /sabnzbd
+
+echo 'Updating SABnzbd...'
 git pull
-./SABnzbd.py -b 0 -f /datadir/config.ini
+
+echo 'Starting SABnzbd...'
+exec ./SABnzbd.py -b 0 -f /datadir/config.ini

@@ -10,7 +10,7 @@ RUN sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
     && rm -rf /tmp/*
 
 RUN groupadd -r -g 666 sabnzbd \
-    && useradd -r -u 666 -g 666 sabnzbd
+    && useradd -r -u 666 -g 666 -d /sabnzbd sabnzbd
 
 RUN git clone https://github.com/sabnzbd/sabnzbd.git /sabnzbd \
     && chown -R sabnzbd: /sabnzbd
@@ -26,4 +26,4 @@ EXPOSE 8080
 USER sabnzbd
 
 WORKDIR /sabnzbd
-CMD /start.sh
+CMD ["/start.sh"]
