@@ -1,5 +1,5 @@
 FROM debian:8
-MAINTAINER confirm IT solutions, dbarton
+MAINTAINER Dominique Barton
 
 RUN sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
     && apt-get -q update \
