@@ -19,7 +19,7 @@ ADD start.sh /start.sh
 RUN chown sabnzbd: /start.sh \
     && chmod 755 /start.sh
 
-VOLUME ['/datadir', '/media']
+VOLUME ["/datadir", "/media"]
 
 EXPOSE 8080
 
