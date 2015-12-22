@@ -12,7 +12,7 @@ RUN sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
 RUN groupadd -r -g 666 sabnzbd \
     && useradd -r -u 666 -g 666 -d /sabnzbd sabnzbd
 
-RUN git clone https://github.com/sabnzbd/sabnzbd.git /sabnzbd \
+RUN git clone -b master https://github.com/sabnzbd/sabnzbd.git /sabnzbd \
     && chown -R sabnzbd: /sabnzbd
 
 ADD start.sh /start.sh
