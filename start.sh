@@ -1,13 +1,13 @@
 #!/bin/sh
 
+echo "Updating SABnzbd git repository..."
+git pull
+
 if [[ -n "${VERSION}" ]]
 then
     echo "Checking out SABnzbd version '${VERSION}'..."
     git checkout ${VERSION}
 fi
-
-echo "Updating SABnzbd..."
-git pull
 
 CONFIG=${CONFIG:-/datadir/config.ini}
 echo "Starting SABnzbd with config '${CONFIG}'..."
