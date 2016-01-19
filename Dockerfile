@@ -3,7 +3,7 @@ MAINTAINER Dominique Barton
 
 RUN sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
     && apt-get -q update \
-    && apt-get install -qy git python-cheetah python-openssl unzip unrar build-essential automake \
+    && apt-get install -qy git python-cheetah python-openssl unzip unrar p7zip build-essential automake \
     && git clone https://github.com/Parchive/par2cmdline.git /tmp/par2cmdline \
     && cd /tmp/par2cmdline \
     && aclocal \
