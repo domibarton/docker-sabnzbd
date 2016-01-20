@@ -83,11 +83,11 @@ _SABnzbd will automatically be updated and switched to your defined version when
 ### UID and GID
 
 By default SABnzbd runs with user ID and group ID `666`.
-If you want to run SABnzbd with different ID's you've to set the `UID` and/or `GID` environment variables, for example:
+If you want to run SABnzbd with different ID's you've to set the `SABNZBD_UID` and/or `SABNZBD_GID` environment variables, for example:
 
 ```
-UID=1234
-GID=1234
+SABNZBD_UID=1234
+SABNZBD_GID=1234
 ```
 
 ## Improvements for SABnzbd version > 0.8
