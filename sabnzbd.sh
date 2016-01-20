@@ -34,7 +34,7 @@ echo "[DONE]"
 printf "Set permissions... "
 touch ${CONFIG}
 chown -R ${USER}: /sabnzbd
-chown ${USER}: /datadir /download $(dirname ${CONFIG}) 
+chown ${USER}: /datadir /download $(dirname ${CONFIG})
 echo "[DONE]"
 
 #
@@ -49,7 +49,7 @@ printf "Getting current version... "
 CURRENT_VERSION=$(git rev-parse --abbrev-ref HEAD)
 echo "[${CURRENT_VERSION}]"
 
-if [[ "${CURRENT_VERSION}" == "${VERSION}" ]]
+if [[ "${CURRENT_VERSION}" != "${VERSION}" ]]
 then
     printf "Checking out SABnzbd version '${VERSION}'... "
     git checkout -q ${VERSION}
