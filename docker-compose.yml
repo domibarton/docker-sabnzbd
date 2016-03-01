@@ -2,8 +2,6 @@
 sabnzbd:
     build: .
     container_name: 'sabnzbd'
-    environment:
-        VERSION: 'master'
     volumes:
         - './data/datadir:/datadir'
         - './data/download:/download'
