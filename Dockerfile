@@ -1,5 +1,5 @@
 FROM debian:8
-MAINTAINER SABnzbd
+MAINTAINER Dominique Barton
 
 #
 # Create user and group for SABnzbd.
