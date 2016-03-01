@@ -15,7 +15,6 @@ echo "  UID:        ${SABNZBD_UID:=666}"
 echo "  GID:        ${SABNZBD_GID:=666}"
 echo
 echo "  Config:     ${CONFIG:=/datadir/config.ini}"
-echo "  Version:    ${VERSION:=master}"
 echo
 
 #
@@ -36,25 +35,6 @@ touch ${CONFIG}
 chown -R ${USER}: /sabnzbd
 chown ${USER}: /datadir /download $(dirname ${CONFIG})
 echo "[DONE]"
-
-#
-# Update SABnzbd and checkout requested version.
-#
-
-printf "Updating SABnzbd git repository... "
-git pull -q
-echo "[DONE]"
-
-printf "Getting current version... "
-CURRENT_VERSION=$(git rev-parse --abbrev-ref HEAD)
-echo "[${CURRENT_VERSION}]"
-
-if [[ "${CURRENT_VERSION}" != "${VERSION}" ]]
-then
-    printf "Checking out SABnzbd version '${VERSION}'... "
-    git checkout -q ${VERSION}
-    echo "[DONE]"
-fi
 
 #
 # Because SABnzbd runs in a container we've to make sure we've a proper

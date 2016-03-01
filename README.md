@@ -6,7 +6,6 @@ The Docker image currently supports:
 
 * running SABnzbd under its __own user__ (not `root`)
 * changing of the __UID and GID__ for the SABnzbd user
-* __automatic update__ of SABnzbd on container restart
 * instant __switching between different SABnzbd versions__
 * support for OpenSSL / HTTPS encryption
 * support for __RAR archives__
@@ -67,18 +66,6 @@ If you want to change this you've to set the `CONFIG` environment variable, for 
 ```
 CONFIG=/datadir/sabnzbd.ini
 ```
-
-### SABnzbd Version
-
-By default the latest SABnzbd version will be used. This is achieved by pointing at the `master` tree of the [SABnzbd git repository](https://github.com/sabnzbd/sabnzbd/tree/master). If you want a different version you've set the `VERSION` environment variable to a valid git [branch](https://github.com/sabnzbd/sabnzbd/branches) or [tag](https://github.com/sabnzbd/sabnzbd/tags), for example:
-
-```
-VERSION=develop
-```
-
-Please note that `VERSION=master` always points to the latest stable version, while `VERSION=develop` points to the bleeding-edge version of SABnzbd.
-
-_SABnzbd will automatically be updated and switched to your defined version when you restart your container._
 
 ### UID and GID
 

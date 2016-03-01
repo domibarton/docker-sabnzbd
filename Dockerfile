@@ -2,29 +2,6 @@ FROM debian:8
 MAINTAINER SABnzbd
 
 #
-# Install all required dependencies.
-#
-
-RUN sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
-    && apt-get -q update \
-    && apt-get install -qy git python-cheetah python-openssl unzip unrar p7zip-full build-essential automake \
-    && git clone https://github.com/Parchive/par2cmdline.git /tmp/par2cmdline \
-    && cd /tmp/par2cmdline \
-    && aclocal \
-    && automake --add-missing \
-    && autoconf \
-    && ./configure \
-    && make \
-    && make check \
-    && make install \
-    && apt-get -y remove build-essential automake \
-    && apt-get -y autoremove \
-    && apt-get -y clean \
-    && rm -rf /var/lib/apt/lists/* \
-    && cd / \
-    && rm -rf /tmp/*
-
-#
 # Create user and group for SABnzbd.
 #
 
@@ -32,18 +9,40 @@ RUN groupadd -r -g 666 sabnzbd \
     && useradd -r -u 666 -g 666 -d /sabnzbd sabnzbd
 
 #
-# Get SABnzbd repository.
-#
-
-RUN git clone -b master https://github.com/sabnzbd/sabnzbd.git /sabnzbd \
-    && chown -R sabnzbd: /sabnzbd
-
-#
 # Add SABnzbd init script.
 #
 
 ADD sabnzbd.sh /sabnzbd.sh
 RUN chmod 755 /sabnzbd.sh
+
+#
+# Install SABnzbd and all required dependencies.
+#
+
+RUN export SABNZBD_VERSION=0.7.20 PAR2CMDLINE_VERSION=v0.6.14 \
+    && sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
+    && apt-get -q update \
+    && apt-get install -qy curl python-cheetah python-openssl unzip unrar p7zip-full build-essential automake \
+    && curl -o /tmp/sabnzbd.tar.gz https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/${SABNZBD_VERSION} \
+    && tar xzf /tmp/sabnzbd.tar.gz \
+    && mv sabnzbd-* sabnzbd \
+    && chown -R sabnzbd: sabnzbd \
+    && curl -o /tmp/par2cmdline.tar.gz https://codeload.github.com/Parchive/par2cmdline/tar.gz/${PAR2CMDLINE_VERSION} \
+    && tar xzf /tmp/par2cmdline.tar.gz -C /tmp \
+    && cd /tmp/par2cmdline-* \
+    && aclocal \
+    && automake --add-missing \
+    && autoconf \
+    && ./configure \
+    && make \
+    && make check \
+    && make install \
+    && apt-get -y remove git curl build-essential automake \
+    && apt-get -y autoremove \
+    && apt-get -y clean \
+    && rm -rf /var/lib/apt/lists/* \
+    && cd / \
+    && rm -rf /tmp/*
 
 #
 # Define container settings.
