@@ -6,7 +6,6 @@ The Docker image currently supports:
 
 * running SABnzbd under its __own user__ (not `root`)
 * changing of the __UID and GID__ for the SABnzbd user
-* instant __switching between different SABnzbd versions__
 * support for OpenSSL / HTTPS encryption
 * support for __RAR archives__
 * support for __ZIP archives__
