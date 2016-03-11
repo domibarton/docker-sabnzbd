@@ -35,7 +35,6 @@ RUN export SABNZBD_VERSION=1.0.0RC2 PAR2CMDLINE_VERSION=v0.6.14 \
     && autoconf \
     && ./configure \
     && make \
-    && make check \
     && make install \
     && apt-get -y remove curl build-essential automake \
     && apt-get -y autoremove \
