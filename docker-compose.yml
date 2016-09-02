@@ -4,5 +4,5 @@ sabnzbd:
     container_name: 'sabnzbd'
     volumes:
         - './data/datadir:/datadir'
-        - './data/download:/download'
+        - './data/media:/media'
     restart: 'always'
