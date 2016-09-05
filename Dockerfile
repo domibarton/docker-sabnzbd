@@ -1,5 +1,5 @@
 FROM debian:8
-MAINTAINER Dominique Barton
+MAINTAINER wraithfive
 
 #
 # Create user and group for SABnzbd.
@@ -47,7 +47,7 @@ RUN export SABNZBD_VERSION=1.0.3 PAR2CMDLINE_VERSION=v0.6.14 \
 # Define container settings.
 #
 
-VOLUME ["/datadir", "/media"]
+VOLUME ["/datadir", "/media", "/incomplete-downloads", "/backup", "/watched"]
 
 EXPOSE 8080
 

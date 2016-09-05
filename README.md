@@ -19,7 +19,7 @@ The Docker image currently supports:
 To run the SABnzbd container you can execute:
 
 ```bash
-docker run --name sabnzbd -v <datadir path>:/datadir -v <media path>:/media -p 8080:8080 sabnzbd/sabnzbd
+docker run --name sabnzbd -v <datadir path>:/datadir -v <media path>:/media -v <watched path>:/watched -v <backup path>:/backup -v <incomplete path>:/incomplete-downloads -e SABNZBD_UID=1234 -e SABNZBD_GID=1234 -p 8080:8080 sabnzbd/sabnzbd
 ```
 
 Open a browser and point it to [http://my-docker-host:8080](http://my-docker-host:8080)
@@ -43,6 +43,9 @@ sabnzbd:
     volumes:
         - "<datadir path>:/datadir"
         - "<media path>:/media"
+        - "<watched path>:/watched" 
+        - "<backup path>:/backup" 
+        - "<incomplete path>:/incomplete-downloads"
     ports:
         - "8080:8080"
     restart: always
@@ -56,6 +59,9 @@ Please mount the following volumes inside your SABnzbd container:
 
 * `/datadir`: Holds all the SABnzbd data files (e.g. config, postProcessing)
 * `/media`: Directory for media (downloaded files)
+* `/incomplete-downloads`: local path for incomplete-downloads
+* `/watched`: local path to watch for nzb files
+* `/backup`: local path to backup nzb files
 
 ### Configuration file
 
