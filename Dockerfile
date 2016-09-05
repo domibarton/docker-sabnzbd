@@ -47,7 +47,7 @@ RUN export SABNZBD_VERSION=1.0.3 PAR2CMDLINE_VERSION=v0.6.14 \
 # Define container settings.
 #
 
-VOLUME ["/datadir", "/media", "/incomplete-downloads", "/config"]
+VOLUME ["/datadir", "/media", "/incomplete-downloads", "/backup", "/watched"]
 
 EXPOSE 8080
 
