@@ -16,6 +16,12 @@ ADD sabnzbd.sh /sabnzbd.sh
 RUN chmod 755 /sabnzbd.sh
 
 #
+# Fix locales to handle UTF-8 characters.
+#
+
+ENV LANG C.UTF-8
+
+#
 # Install SABnzbd and all required dependencies.
 #
 
