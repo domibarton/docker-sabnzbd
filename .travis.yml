@@ -27,3 +27,6 @@ after_script:
 
 after_failure:
   - docker logs sabnzbd
+
+after_success:
+  - docker history dockersabnzbd_sabnzbd
