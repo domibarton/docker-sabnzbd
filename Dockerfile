@@ -1,4 +1,4 @@
-FROM debian:8
+FROM debian:jessie-backports
 MAINTAINER Dominique Barton
 
 #
@@ -19,13 +19,15 @@ RUN chmod 755 /sabnzbd.sh
 # Install SABnzbd and all required dependencies.
 #
 
-RUN export SABNZBD_VERSION=1.1.0 PAR2CMDLINE_VERSION=v0.6.14 \
+RUN export SABNZBD_VERSION=1.2.0 PAR2CMDLINE_VERSION=v0.6.14 \
     && sed -i "s/ main$/ main contrib non-free/" /etc/apt/sources.list \
     && apt-get -q update \
-    && apt-get install -qy curl ca-certificates python-cheetah python-openssl python-yenc unzip unrar p7zip-full build-essential automake \
-    && curl -o /tmp/sabnzbd.tar.gz https://codeload.github.com/sabnzbd/sabnzbd/tar.gz/${SABNZBD_VERSION} \
+    && apt-get -t jessie-backports upgrade -qy openssl \
+    && apt-get install -qy curl ca-certificates python-cheetah python-yenc unzip unrar p7zip-full build-essential automake \
+    && apt-get -t jessie-backports install -qy python-cryptography python-openssl \
+    && curl -SL -o /tmp/sabnzbd.tar.gz https://github.com/sabnzbd/sabnzbd/releases/download/${SABNZBD_VERSION}/SABnzbd-${SABNZBD_VERSION}-src.tar.gz \
     && tar xzf /tmp/sabnzbd.tar.gz \
-    && mv sabnzbd-* sabnzbd \
+    && mv SABnzbd-* sabnzbd \
     && chown -R sabnzbd: sabnzbd \
     && curl -o /tmp/par2cmdline.tar.gz https://codeload.github.com/Parchive/par2cmdline/tar.gz/${PAR2CMDLINE_VERSION} \
     && tar xzf /tmp/par2cmdline.tar.gz -C /tmp \
