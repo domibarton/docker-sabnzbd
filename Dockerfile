@@ -25,7 +25,7 @@ ENV LANG C.UTF-8
 # Install SABnzbd and all required dependencies.
 #
 
-RUN export SABNZBD_VERSION=1.2.0 PAR2CMDLINE_VERSION=v0.6.14 \
+RUN export SABNZBD_VERSION=2.0.0 PAR2CMDLINE_VERSION=v0.6.14-mt1\
     && export DEBIAN_FRONTEND=noninteractive \
     && export BUILD_PACKAGES="automake build-essential curl" \
     && export RUNTIME_BACKPORTS_PACKAGES="openssl python-cryptography python-openssl" \
@@ -38,8 +38,8 @@ RUN export SABNZBD_VERSION=1.2.0 PAR2CMDLINE_VERSION=v0.6.14 \
     && tar xzf /tmp/sabnzbd.tar.gz \
     && mv SABnzbd-* sabnzbd \
     && chown -R sabnzbd: sabnzbd \
-    && curl -o /tmp/par2cmdline.tar.gz https://codeload.github.com/Parchive/par2cmdline/tar.gz/${PAR2CMDLINE_VERSION} \
-    && tar xzf /tmp/par2cmdline.tar.gz -C /tmp \
+    && curl -o /tmp/par2cmdline-mt.tar.gz https://codeload.github.com/jkansanen/par2cmdline-mt/tar.gz/${PAR2CMDLINE_VERSION} \
+    && tar xzf /tmp/par2cmdline-mt.tar.gz -C /tmp \
     && cd /tmp/par2cmdline-* \
     && aclocal \
     && automake --add-missing \
