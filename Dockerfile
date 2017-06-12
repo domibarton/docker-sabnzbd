@@ -49,8 +49,7 @@ RUN export SABNZBD_VERSION=2.1.0 PAR2CMDLINE_VERSION=v0.6.14-mt1 \
     && ./configure \
     && make \
     && make install \
-    && export AUTO_ADDED_PACKAGES="$(apt-mark showauto)" \
-    && apt-get -y remove --purge $BUILD_PACKAGES $AUTO_ADDED_PACKAGES \
+    && apt-get -y remove --purge $BUILD_PACKAGES \
     && apt-get -y autoremove \
     && apt-get install -qqy $RUNTIME_PACKAGES \
     && apt-get -t jessie-backports install -qqy $RUNTIME_BACKPORTS_PACKAGES \
