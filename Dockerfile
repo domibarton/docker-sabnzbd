@@ -25,7 +25,7 @@ ENV LANG C.UTF-8
 # Install SABnzbd and all required dependencies.
 #
 
-RUN export SABNZBD_VERSION=2.0.0 PAR2CMDLINE_VERSION=v0.6.14-mt1 \
+RUN export SABNZBD_VERSION=2.1.0 PAR2CMDLINE_VERSION=v0.6.14-mt1 \
     && export DEBIAN_FRONTEND=noninteractive \
     && export BUILD_PACKAGES="automake build-essential curl python-dev python-pip" \
     && export RUNTIME_BACKPORTS_PACKAGES="openssl python-cryptography python-openssl" \
