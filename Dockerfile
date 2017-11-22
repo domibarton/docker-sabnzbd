@@ -22,11 +22,16 @@ RUN chmod 755 /sabnzbd.sh
 ENV LANG C.UTF-8
 
 #
+# Specify versions of software to install.
+#
+ARG SABNZBD_VERSION=2.3.0
+ARG PAR2CMDLINE_VERSION=v0.6.14-mt1
+
+#
 # Install SABnzbd and all required dependencies.
 #
 
-RUN export SABNZBD_VERSION=2.3.0 PAR2CMDLINE_VERSION=v0.6.14-mt1 \
-    && export DEBIAN_FRONTEND=noninteractive \
+RUN export DEBIAN_FRONTEND=noninteractive \
     && export BUILD_PACKAGES="automake build-essential curl python-dev python-pip" \
     && export RUNTIME_BACKPORTS_PACKAGES="openssl python-cryptography python-openssl" \
     && export RUNTIME_PACKAGES="ca-certificates p7zip-full python-cheetah python-yenc unrar unzip libgomp1" \
