@@ -6,10 +6,10 @@ services:
 
 install:
   # Install docker engine from Docker's Ubuntu repo
-  - curl -sSL https://get.docker.com/gpg | sudo -E apt-key add -
-  - echo "deb https://apt.dockerproject.org/repo ubuntu-trusty main" | sudo tee -a /etc/apt/sources.list
+  - curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+  - sudo add-apt-repository "deb https://download.docker.com/linux/ubuntu trusty stable"
   - sudo apt-get update
-  - sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" --assume-yes install docker-engine
+  - sudo apt-get -o Dpkg::Options::="--force-confdef" -o Dpkg::Options::="--force-confold" --assume-yes install docker-ce
   - docker version
 
   # Update docker-compose via pip
