@@ -45,7 +45,7 @@ RUN export DEBIAN_FRONTEND=noninteractive \
     && tar xzf /tmp/sabnzbd.tar.gz \
     && mv SABnzbd-* sabnzbd \
     && chown -R sabnzbd: sabnzbd \
-    && curl -o /tmp/par2cmdline-mt.tar.gz https://github.com/jkansanen/par2cmdline-mt/tar.gz/${PAR2CMDLINE_VERSION} \
+    && curl -o /tmp/par2cmdline-mt.tar.gz https://codeload.github.com/jkansanen/par2cmdline-mt/tar.gz/${PAR2CMDLINE_VERSION} \
     && tar xzf /tmp/par2cmdline-mt.tar.gz -C /tmp \
     && cd /tmp/par2cmdline-* \
     && aclocal \
