@@ -24,7 +24,7 @@ ENV LANG C.UTF-8
 #
 # Specify versions of software to install.
 #
-ARG SABNZBD_VERSION=2.3.6
+ARG SABNZBD_VERSION=2.3.7
 ARG PAR2CMDLINE_VERSION=v0.6.14-mt1
 
 #
