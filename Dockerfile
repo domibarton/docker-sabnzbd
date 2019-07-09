@@ -27,7 +27,7 @@ RUN export DEBIAN_FRONTEND=noninteractive &&\
     chmod 755 /sabnzbd.sh &&\
     sed -i "s#deb http://deb.debian.org/debian buster main#deb http://deb.debian.org/debian buster main non-free#g" /etc/apt/sources.list &&\
     apt-get -q update &&\
-    apt-get install -qqy python python-cheetah python-sabyenc python-cryptography par2 unrar p7zip openssl python-openssl ca-certificates curl &&\
+    apt-get install -qqy python python-cheetah python-sabyenc python-cryptography par2 unrar p7zip-full unzip openssl python-openssl ca-certificates curl &&\
     curl -SL -o /tmp/sabnzbd.tar.gz https://github.com/sabnzbd/sabnzbd/releases/download/${SABNZBD_VERSION}/SABnzbd-${SABNZBD_VERSION}-src.tar.gz &&\
     tar xzf /tmp/sabnzbd.tar.gz &&\
     mv SABnzbd-* sabnzbd &&\
