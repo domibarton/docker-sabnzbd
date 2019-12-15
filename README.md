@@ -6,6 +6,7 @@ The Docker image currently supports:
 
 * running SABnzbd under its __own user__ (not `root`)
 * changing of the __UID and GID__ for the SABnzbd user
+* changing the `host_whitelist` setting for compatibility with [hostname verification](https://sabnzbd.org/hostname-check)
 * support for OpenSSL / HTTPS encryption
 * support for __RAR archives__
 * support for __ZIP archives__
@@ -74,6 +75,30 @@ If you want to run SABnzbd with different ID's you've to set the `SABNZBD_UID` a
 ```
 SABNZBD_UID=1234
 SABNZBD_GID=1234
+```
+
+### Hostname verification and updating `host_whitelist`
+
+Starting with version 2.3.3 SABnzbd implements [hostname verification](https://sabnzbd.org/hostname-check)
+to protect against DNS hijacking attacks. Thus by default SABnzbd allows access
+to the web interface only by either accessing it directly by IP address or by
+the hostname of the machine on which it runs. But the IP address or hostname of
+the running Docker instance is not always available or accessible from the
+outside (especially when running in Kubernetes).
+
+You can work around this by setting the container hostname with
+`docker create -h sabnzbd.example.com ...` when creating the container. This
+will allow you to access SABnzbd by `http://sabnzbd.example.com:8080` by
+default.
+
+You can also use set the environment variable `HOST_WHITELIST_ENTRIES` to a
+string of comma-separated values of hostnames and FQDNs under which SABnzbd
+should be accessible. This will update the [`host_whitelist` special setting](https://sabnzbd.org/wiki/configuration/2.3/special)
+with those values. Note that the container's hostname is always included in
+this whitelist. For example:
+
+```
+HOST_WHITELIST_ENTRIES="sabnzbd.example.com, sabnzbd.other.example.net"
 ```
 
 ## Improvements for SABnzbd version > 0.8

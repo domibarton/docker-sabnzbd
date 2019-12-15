@@ -53,6 +53,21 @@ LISTENER="-s 0.0.0.0:${PORT:=8080}"
 echo "[${PORT}]"
 
 #
+# Update the host_whitelist setting (see https://sabnzbd.org/hostname-check)
+# with any additional hostname/fqdn entries supplied via the HOST_WHITELIST_ENTRIES
+# env variable.
+#
+
+if [[ -n ${HOST_WHITELIST_ENTRIES} ]];
+then
+    printf "Updating host_whitelist setting ... "
+    sed -i -e "s/^host_whitelist *=.*$/host_whitelist = ${HOSTNAME}, ${HOST_WHITELIST_ENTRIES}/g" sabnzbd.ini
+    HOST_WHITELIST=$(sed -n '/^host_whitelist *=/{s/host_whitelist *= *//p;q}' ${CONFIG})
+    echo "[${HOST_WHITELIST}]"
+fi
+
+
+#
 # Finally, start SABnzbd.
 #
 
