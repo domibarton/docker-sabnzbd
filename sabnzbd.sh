@@ -61,7 +61,7 @@ echo "[${PORT}]"
 if [[ -n ${HOST_WHITELIST_ENTRIES} ]];
 then
     printf "Updating host_whitelist setting ... "
-    sed -i -e "s/^host_whitelist *=.*$/host_whitelist = ${HOSTNAME}, ${HOST_WHITELIST_ENTRIES}/g" sabnzbd.ini
+    sed -i -e "s/^host_whitelist *=.*$/host_whitelist = ${HOSTNAME}, ${HOST_WHITELIST_ENTRIES}/g" ${CONFIG}
     HOST_WHITELIST=$(sed -n '/^host_whitelist *=/{s/host_whitelist *= *//p;q}' ${CONFIG})
     echo "[${HOST_WHITELIST}]"
 fi
