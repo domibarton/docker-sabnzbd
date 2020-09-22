@@ -10,8 +10,7 @@ RUN export DEBIAN_FRONTEND=noninteractive &&\
     apt-get -q update &&\
     apt-get install -qqy python3-pip python3-openssl p7zip-full par2 unrar unzip python3 openssl ca-certificates &&\
     apt-get -y autoremove &&\
-    rm -rf /var/lib/apt/lists/* &&\
-    rm -rf /tmp/*
+    rm -rf /var/lib/apt/lists/*
 
 #
 # Add SABnzbd init script.
@@ -43,7 +42,8 @@ RUN groupadd -r -g 666 sabnzbd &&\
     mv SABnzbd-* sabnzbd &&\
     sed -i "s/feedparser/feedparser<6.0.0/" /sabnzbd/requirements.txt &&\
     python3 -m pip install -r /sabnzbd/requirements.txt &&\
-    chown -R sabnzbd: sabnzbd
+    chown -R sabnzbd: sabnzbd &&\
+    rm -rf /tmp/*
 
 #
 # Define container settings.
