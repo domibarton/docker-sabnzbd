@@ -33,12 +33,13 @@ echo "[DONE]"
 printf "Set permissions... "
 touch ${CONFIG}
 chown -R ${USER}: /sabnzbd
-function check_dir {
+function check_permissions {
   [ "$(stat -c '%u %g' $1)" == "${SABNZBD_UID} ${SABNZBD_GID}" ] || chown ${USER}: $1
 }
-check_dir /datadir
-check_dir /media
-check_dir $(dirname ${CONFIG})
+check_permissions /datadir
+check_permissions /media
+check_permissions $(dirname ${CONFIG})
+check_permissions $CONFIG
 echo "[DONE]"
 
 #
