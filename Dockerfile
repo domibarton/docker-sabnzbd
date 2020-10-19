@@ -41,7 +41,6 @@ RUN groupadd -r -g 666 sabnzbd &&\
     chmod 755 /sabnzbd.sh &&\
     tar xzf /tmp/sabnzbd.tar.gz &&\
     mv SABnzbd-* sabnzbd &&\
-    sed -i "s/feedparser/feedparser<6.0.0/" /sabnzbd/requirements.txt &&\
     python3 -m pip install -r /sabnzbd/requirements.txt &&\
     chown -R sabnzbd: sabnzbd &&\
     rm -rf /tmp/*
