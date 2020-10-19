@@ -26,7 +26,7 @@ ENV LANG C.UTF-8
 #
 # Specify versions of software to install.
 #
-ARG SABNZBD_VERSION=3.0.2
+ARG SABNZBD_VERSION=3.1.0
 
 #
 # Add (download) sabnzbd
@@ -41,7 +41,6 @@ RUN groupadd -r -g 666 sabnzbd &&\
     chmod 755 /sabnzbd.sh &&\
     tar xzf /tmp/sabnzbd.tar.gz &&\
     mv SABnzbd-* sabnzbd &&\
-    sed -i "s/feedparser/feedparser<6.0.0/" /sabnzbd/requirements.txt &&\
     python3 -m pip install -r /sabnzbd/requirements.txt &&\
     chown -R sabnzbd: sabnzbd &&\
     rm -rf /tmp/*
