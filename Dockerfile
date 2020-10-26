@@ -43,6 +43,7 @@ RUN groupadd -r -g 666 sabnzbd &&\
     mv SABnzbd-* sabnzbd &&\
     python3 -m pip install -r /sabnzbd/requirements.txt &&\
     chown -R sabnzbd: sabnzbd &&\
+    chmod +x /sabnzbd/scripts/Deobfuscate.py &&\
     rm -rf /tmp/*
 
 #
