@@ -13,6 +13,7 @@ echo
 echo "  User:       ${USER}"
 echo "  UID:        ${SABNZBD_UID:=666}"
 echo "  GID:        ${SABNZBD_GID:=666}"
+echo "  GID_LIST:   ${SABNZBD_GID_LIST:=}"
 echo
 echo "  Config:     ${CONFIG:=/datadir/config.ini}"
 echo
@@ -25,6 +26,19 @@ printf "Updating UID / GID... "
 [[ $(id -u ${USER}) == ${SABNZBD_UID} ]] || usermod  -o -u ${SABNZBD_UID} ${USER}
 [[ $(id -g ${USER}) == ${SABNZBD_GID} ]] || groupmod -o -g ${SABNZBD_GID} ${USER}
 echo "[DONE]"
+
+#
+# Create groups from SABNZBD_GID_LIST.
+#
+if [[ -n ${SABNZBD_GID_LIST} ]]; then
+    for gid in $(echo ${SABNZBD_GID_LIST} | sed "s/,/ /g")
+    do
+        printf "Create group $gid and add user ${USER}..."
+        groupadd -g $gid "grp_$gid"
+        usermod -aG grp_$gid ${USER}
+        echo "[DONE]"
+    done
+fi
 
 #
 # Set directory permissions.
