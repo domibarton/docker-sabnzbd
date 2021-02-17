@@ -76,6 +76,12 @@ If you want to run SABnzbd with different ID's you've to set the `SABNZBD_UID` a
 SABNZBD_UID=1234
 SABNZBD_GID=1234
 ```
+### GID List
+When mounted volumes use different groups to manage access permission, set the `SABNZBD_GID_LIST` environment variable to create groups in the container. The container user will be automatically added to these groups. The variable can take multiple GIDs seperated with comma, for example:
+
+```
+SABNZBD_GID_LIST=123,124,125
+```
 
 ### Hostname verification and updating `host_whitelist`
 
