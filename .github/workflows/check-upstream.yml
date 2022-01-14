@@ -20,7 +20,7 @@ jobs:
       - name: Fetch SABnzbd version
         run: |
           LATEST=$(curl -sL https://api.github.com/repos/sabnzbd/sabnzbd/releases/latest | jq -r ".tag_name")
-          sed -i '' -e 's/^\(ARG SABNZBD_VERSION=\).*$/\1'"$LATEST"'/g' Dockerfile
+          sed -i 's/^\(ARG SABNZBD_VERSION=\).*$/\1'"$LATEST"'/g' Dockerfile
           echo "SABNZBD_VERSION=$LATEST" >> $GITHUB_ENV
 
       - name: Create pull request
