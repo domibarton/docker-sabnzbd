@@ -1,10 +1,12 @@
 ---
-sabnzbd:
-    build: .
-    container_name: 'sabnzbd'
+version: "3.9"
+services:
+  sabnzbd:
+    image: sabnzbd/sabnzbd:${SABNZBD_TAG:-latest}
+    container_name: sabnzbd
     volumes:
-        - './data/datadir:/datadir'
-        - './data/media:/media'
+      - "./data/datadir:/datadir"
+      - "./data/media:/media"
     ports:
-        - '8080:8080'
-    restart: 'always'
+      - "8080:8080"
+    restart: always

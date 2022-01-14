@@ -60,6 +60,28 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
+      - name: Build for AMD64 for testing
+        uses: docker/build-push-action@v2
+        with:
+          context: .
+          load: true
+          tags: sabnzbd/sabnzbd:${{ steps.prep.outputs.tag || 'latest' }}
+          push: false
+          cache-from: type=local,src=/tmp/.buildx-cache
+          cache-to: type=local,dest=/tmp/.buildx-cache-new
+
+      - name: Start containers
+        run: docker-compose up -d
+
+      - name: Run tests
+        env:
+          SABNZBD_TAG: ${{ steps.prep.outputs.tag || 'latest' }}
+        run: ./test.sh
+
+      - name: Stop containers
+        if: always()
+        run: docker-compose down
+
       - name: Push to GitHub Packages
         uses: docker/build-push-action@v2
         with:
@@ -67,10 +89,10 @@ jobs:
           platforms: linux/amd64,linux/arm64,linux/arm/v7
           tags: ghcr.io/${{ github.repository_owner }}/${{ env.IMAGE_NAME }}:${{ steps.prep.outputs.tag || 'latest' }}
           push: ${{ github.event_name != 'pull_request' }}
-          cache-from: type=local,src=/tmp/.buildx-cache
-          cache-to: type=local,dest=/tmp/.buildx-cache-new
-          
+          cache-from: type=local,src=/tmp/.buildx-cache-new
+          cache-to: type=local,dest=/tmp/.buildx-cache-newer
+
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-newer /tmp/.buildx-cache

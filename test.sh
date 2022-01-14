@@ -26,3 +26,5 @@ then
     echo "Received HTTP $http_code from SABnzbd port (last curl exit code: $curl_exit)"
     exit 1
 fi
+
+echo "Tests passed."
