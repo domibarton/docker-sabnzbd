@@ -1,0 +1,39 @@
+# This is a basic workflow to help you get started with Actions
+
+name: Check upstream SABnzbd release version
+
+# Controls when the action will run. 
+on:
+  # Triggers the workflow every day
+  schedule:
+    - cron: '37 10 * * *'
+
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  get-version:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Fetch SABnzbd version
+        run: |
+          LATEST=$(curl -sL https://api.github.com/repos/sabnzbd/sabnzbd/releases/latest | jq -r ".tag_name")
+          sed -i '' -e 's/^\(ARG SABNZBD_VERSION=\).*$/\1'"$LATEST"'/g' Dockerfile
+          echo "SABNZBD_VERSION=$LATEST" >> $GITHUB_ENV
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@v3.12.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: |
+            Update the Dockerfile to SABnzbd version ${{ env.SABNZBD_VERSION }}.
+          author: Update Bot <no-reply+updaterbot+domibarton+sabnzbd@github.com>
+          title: 'SABnzbd version ${{ env.SABNZBD_VERSION }}'
+          body: |
+            Automated update of SABnzbd version.
+          labels: automated pr
+
+      - name: Report pull request creation
+        run: echo "Created pull request number ${{ env.PULL_REQUEST_NUMBER }}"
