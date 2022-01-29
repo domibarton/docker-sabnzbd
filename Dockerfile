@@ -26,7 +26,7 @@ ENV LANG C.UTF-8
 #
 # Specify versions of software to install.
 #
-ARG SABNZBD_VERSION=3.4.2
+ARG SABNZBD_VERSION=3.5.0
 
 #
 # Add (download) sabnzbd
