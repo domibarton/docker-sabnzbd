@@ -100,4 +100,4 @@ jobs:
       - name: Move cache
         run: |
           rm -rf /tmp/.buildx-cache
-          mv /tmp/.buildx-cache-newer /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
