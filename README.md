@@ -1,3 +1,9 @@
+WARNING
+=======
+
+This repository is no longer actively managed.  
+Please migrate to [Linuxserver's GitHub repository](https://github.com/linuxserver/docker-sabnzbd), respectively use [Linuxserver's Docker(Hub) image](https://hub.docker.com/r/linuxserver/sabnzbd).
+
 ## About
 
 This is a Docker image for [SABnzbd](http://sabnzbd.org/) - the Open Source Binary Newsreader written in Python.
