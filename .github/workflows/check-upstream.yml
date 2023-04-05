@@ -24,7 +24,7 @@ jobs:
           echo "SABNZBD_VERSION=$LATEST" >> $GITHUB_ENV
 
       - name: Create pull request
-        uses: peter-evans/create-pull-request@v4
+        uses: peter-evans/create-pull-request@v5
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           commit-message: |
